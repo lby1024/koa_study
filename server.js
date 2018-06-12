@@ -1,9 +1,8 @@
 const Coa = require('./application.js')
 
 const app = new Coa()
-app.use((req, res) => {
-    res.writeHead(200)
-    res.end('fuck the fucking world')
+app.use(async(ctx) => {
+    ctx.body = 'ctx的简单封装'+ctx.url
 })
 
 app.listen(2333, ()=>{
