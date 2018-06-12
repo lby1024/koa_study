@@ -1,10 +1,11 @@
-const http = require('http')
+const Coa = require('./application.js')
 
-const server = http.createServer((req, res) => {
+const app = new Coa()
+app.use((req, res) => {
     res.writeHead(200)
-    res.end('fuck the fucking world')       // 显示在网页上的内容
+    res.end('fuck the fucking world')
 })
 
-server.listen(2333, ()=>{
-    console.log('监听2333端口')
+app.listen(2333, ()=>{
+    console.log('监听端口号, 2333')
 })
