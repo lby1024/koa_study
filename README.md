@@ -16,8 +16,8 @@ let response = {
         set body (value) {
             this._body = value
         }
-    }
-    console.log(response.body)      // undefined
-    response.body = 'fuck'
-    console.log(response.body)      // 'fuck'
+}
+console.log(response.body)      // undefined
+response.body = 'fuck'
+console.log(response.body)      // 'fuck'
 ```
