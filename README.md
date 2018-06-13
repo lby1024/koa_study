@@ -1,23 +1,30 @@
 # koa_study
 koa 源码学习
-### v3 : 封装ctx
-###### ctx 的 六个属性
-![1](https://upload-images.jianshu.io/upload_images/6954760-5a5c6d203f6c3c5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-###### 关于 this._body
-
+### v4 : 一个简单的洋葱圈
 ```
-// get set 里面的this, 指的是对象自己
-// 下面代码相当于给response, 添加了一个body属性, 默认值为undefined
-let response = {
-    get body () {
-        return this._body
-    },
-    set body (value) {
-        this._body = value
-    }
+function fn1 (next) {
+    console.log("---fn1进入---")
+    next()
+    console.log("---fn1出去---")
 }
-console.log(response.body)      // undefined
-response.body = 'fuck'
-console.log(response.body)      // 'fuck'
+function fn2 (next) {
+    console.log("---fn2进入---")
+    next()
+    console.log("---fn2出去---")
+}
+function fn3 (next) {
+    console.log("---fn3---")
+}
+
+let list = [fn1, fn2, fn3]
+let number = 0
+
+function next () {
+    number++
+    list[number](next)
+}
+
+// 开始执行
+fn1(next)
 ```
+
